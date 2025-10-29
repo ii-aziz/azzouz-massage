@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "عزوز مساج | خدمة مساج منزلي في الرياض",
-  description: "مساج استرخاء ورياضي داخل الرياض - نجيك لين البيت. احجز الآن."
+  title: "عزوز مساج | مساج منزلي في الرياض",
+  description: "جلسات مساج احترافية داخل مدينة الرياض – نجي لين بيتك. استرخاء، شد عضلي، رياضي."
 };
 
 export default function RootLayout({ children }) {
@@ -27,10 +27,12 @@ export default function RootLayout({ children }) {
             lineHeight: 1.6,
             color: "#444"
           }}>
-            <div style={{ fontWeight: 600 }}>عزوز مساج</div>
-            <div>خدمة مساج منزلية داخل الرياض</div>
-            <div>لحجز أسرع: سناب <span style={{ fontWeight: 600 }}>azizan99</span></div>
-            <div style={{ marginTop: "8px", opacity: 0.7 }}>الخصوصية محترمة / أدوات معقمة / راحة كاملة</div>
+            <div style={{ fontWeight: 600, fontSize: "15px", color: "#000" }}>عزوز مساج</div>
+            <div>مساج منزلي داخل مدينة الرياض</div>
+            <div>حجز أسرع عبر السناب: <span style={{ fontWeight: 600 }}>azizan99</span> 👻</div>
+            <div style={{ marginTop: "8px", opacity: 0.7, fontSize: "12px", lineHeight: 1.6 }}>
+              جلسات استرخاء وعناية عضلية فقط. جميع الخدمات قانونية ومحترمة وغير مخالفة.
+            </div>
           </footer>
         </div>
       </body>
