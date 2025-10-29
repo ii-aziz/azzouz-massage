@@ -1,51 +1,62 @@
-import nodemailer from "nodemailer";
+// app/api/book/route.js
+import { bookingsMemory } from "./store";
+
+function sanitize(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .trim()
+    .slice(0, 500);
+}
 
 export async function POST(request) {
   try {
-    const data = await request.json();
-
-    // تحقق من الحقول الأساسية
-    if (!data.service || !data.name || !data.gender || !data.area || !data.time) {
-      return new Response(JSON.stringify({ ok: false, error: "Missing fields" }), { status: 400 });
+    // حماية بسيطة برمز
+    const siteTokenHeader = request.headers.get("x-site-token") || "";
+    if (!process.env.SECRET_SITE_TOKEN || siteTokenHeader !== process.env.SECRET_SITE_TOKEN) {
+      return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), { status: 401 });
     }
 
-    // جهز الإيميل
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: process.env.SMTP_SECURE === "true", // true لو تستخدم 465
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+    const data = await request.json();
+
+    // الحقول المطلوبة
+    const required = ["service", "gender", "name", "area", "time"];
+    for (const r of required) {
+      if (!data[r] || String(data[r]).trim().length === 0) {
+        return new Response(
+          JSON.stringify({ ok: false, error: `${r} is required` }),
+          { status: 400 }
+        );
       }
+    }
+
+    // ننظف ونجهز
+    const booking = {
+      service: sanitize(data.service),
+      gender: sanitize(data.gender),
+      name: sanitize(data.name),
+      area: sanitize(data.area),
+      time: sanitize(data.time),
+      notes: sanitize(data.notes || ""),
+      createdAt: new Date().toISOString()
+    };
+
+    // نحفظه بالذاكرة
+    bookingsMemory.push(booking);
+
+    console.log("حجز جديد:", booking);
+
+    // رد للفرونت
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
     });
-
-    const htmlBody = `
-      <div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto; line-height:1.6; color:#111; font-size:14px">
-        <h2 style="margin:0 0 12px 0; font-size:16px; font-weight:600; color:#000">حجز جديد - عزوز مساج</h2>
-        <div><b>الاسم:</b> ${data.name}</div>
-        <div><b>الجنس:</b> ${data.gender}</div>
-        <div><b>نوع الجلسة:</b> ${data.service}</div>
-        <div><b>الحي داخل الرياض:</b> ${data.area}</div>
-        <div><b>الوقت المطلوب:</b> ${data.time}</div>
-        <div><b>ملاحظات:</b> ${data.notes || "لا يوجد"}</div>
-        <hr style="margin:16px 0;border:none;border-top:1px solid #ddd" />
-        <div style="font-size:12px;color:#666">
-          رسالة أوتوماتيكية من موقع عزوز مساج.
-        </div>
-      </div>
-    `;
-
-    await transporter.sendMail({
-      from: `"عزوز مساج" <${process.env.SMTP_USER}>`,
-      to: process.env.BOOKING_EMAIL_TO,
-      subject: `حجز جديد من ${data.name} (${data.gender})`,
-      html: htmlBody
-    });
-
-    return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err) {
-    console.error("EMAIL ERROR:", err);
-    return new Response(JSON.stringify({ ok: false, error: "Server error" }), { status: 500 });
+    console.error("Server error:", err);
+    return new Response(JSON.stringify({ ok: false, error: "Server error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    });
   }
 }
