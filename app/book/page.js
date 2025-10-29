@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function BookPage() {
   const [service, setService] = useState("مساج استرخاء (60 دقيقة)");
+  const [gender, setGender] = useState("رجال");
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
   const [time, setTime] = useState("");
@@ -18,6 +19,7 @@ export default function BookPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         service,
+        gender,
         name,
         area,
         time,
@@ -26,14 +28,15 @@ export default function BookPage() {
     });
 
     if (res.ok) {
-      setStatus("تم استلام طلبك 💆‍♂️ بيتم التواصل للتأكيد.");
+      setStatus("تم استلام طلبك ✅ سيتم التواصل معك للتأكيد النهائي.");
       setService("مساج استرخاء (60 دقيقة)");
+      setGender("رجال");
       setName("");
       setArea("");
       setTime("");
       setNotes("");
     } else {
-      setStatus("صار خلل، حاول مرة ثانية أو تواصل على السناب.");
+      setStatus("صار خطأ، حاول مرة ثانية أو تواصل على السناب azizan99 👻");
     }
   }
 
@@ -58,8 +61,8 @@ export default function BookPage() {
       </h1>
 
       <p style={{ fontSize: "14px", color: "#444", lineHeight: 1.6, marginTop: 0 }}>
-        الخدمة متاحة داخل مدينة الرياض فقط. بعد إرسال الطلب
-        راح يتم التواصل معك على السناب للتأكيد النهائي (المعالج / الوقت / السعر حسب المسافة).
+        الخدمة متاحة داخل <b>مدينة الرياض فقط</b> (منزل / مكتب).<br />
+        بعد إرسال الطلب، بنرجع لك للتأكيد على السناب أو الجوال بخصوص الوقت والسعر النهائي.
       </p>
 
       <form onSubmit={submitBooking} style={{ display: "grid", gap: "16px", marginTop: "24px" }}>
@@ -78,12 +81,24 @@ export default function BookPage() {
         </div>
 
         <div>
+          <label style={labelStyle}>الجنس</label>
+          <select
+            style={inputStyle}
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option>رجال</option>
+            <option>نساء</option>
+          </select>
+        </div>
+
+        <div>
           <label style={labelStyle}>اسمك</label>
           <input
             style={inputStyle}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="مثال: أبو محمد"
+            placeholder="مثال: أبو محمد / أم خالد"
             required
           />
         </div>
@@ -116,7 +131,7 @@ export default function BookPage() {
             style={{ ...inputStyle, minHeight: "80px", resize: "vertical" }}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            placeholder="شد في أسفل الظهر، راسي يوجعني من الرقبة، أبغى هدوء تام..."
+            placeholder="شد في الرقبة، ألم أسفل الظهر، أبغى جلسة هادئة..."
           />
         </div>
 
