@@ -16,13 +16,13 @@ export default function HomePage() {
         gridTemplateColumns: "1fr",
       }}>
 
-        {/* صورة علوية عريضة */}
+        {/* صورة علوية */}
         <div
           style={{
             width: "100%",
             height: "220px",
             backgroundImage:
-              // يدين مع زيت مساج وسبا هادي (زيوت دافيه على الظهر)
+              // يدين تعالج الظهر بزيت دافئ - look & feel سبا محترم
               "url('https://images.unsplash.com/photo-1584466977773-e625c37cdd40?auto=format&fit=crop&w=1600&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center"
@@ -126,7 +126,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2: FEATURES / WHY US */}
+      {/* SECTION 2: FEATURES */}
       <section style={{
         backgroundColor: "#fff",
         borderRadius: "16px",
@@ -161,7 +161,7 @@ export default function HomePage() {
           <FeatureCard
             icon="🧴"
             title="زيوت دافئة وعناية عضلية"
-            desc="جلسات بزيوت مخصصة للاسترخاء أو التخفيف من الشد في الرقبة / أسفل الظهر."
+            desc="جلسات بزيوت مخصصة للاسترخاء أو للتخفيف من الشد في الرقبة وأسفل الظهر."
           />
           <FeatureCard
             icon="🧼"
@@ -170,13 +170,13 @@ export default function HomePage() {
           />
           <FeatureCard
             icon="🕰️"
-            title="مرونة في المواعيد"
-            desc="جلسات مسائية / بعد الدوام / آخر الليل. نحاول نمشي مع وقتك، مو العكس."
+            title="مواعيد مرنة"
+            desc="مساء / بعد الدوام / آخر الليل. نحاول نمشي مع وقتك، مو العكس."
           />
         </div>
       </section>
 
-      {/* SECTION 3: SERVICES / PACKAGES */}
+      {/* SECTION 3: PACKAGES WITH IMAGES */}
       <section style={{
         backgroundColor: "#fff",
         borderRadius: "16px",
@@ -205,28 +205,28 @@ export default function HomePage() {
         }}>
           <ServiceCard
             title="مساج استرخاء (60 دقيقة)"
-            desc="تهدئة أعصاب، تنفيس توتر، تحضير لنوم عميق. لمسة ناعمة + زيت دافئ."
+            desc="راحة كاملة، نوم أعمق، تهدئة ضغطك اليومي بزيوت دافئة ولمسة ناعمة."
             price="250 ريال"
             img="https://images.unsplash.com/photo-1600334129128-685c93f6022f?auto=format&fit=crop&w=900&q=80"
             badge="راحة"
           />
           <ServiceCard
             title="مساج علاجي للشد العضلي (60 دقيقة)"
-            desc="تركيز على منطقة الألم (رقبة / أكتاف / أسفل الظهر). ممتاز للي طول اليوم عالكمبيوتر."
+            desc="تركيز على عضلات متيبسة: رقبة، كتف، أسفل ظهر. مناسب لحمـلة المكتب."
             price="300 ريال"
             img="https://images.unsplash.com/photo-1580281658629-47dab5c4c4e0?auto=format&fit=crop&w=900&q=80"
             badge="شد عضلي"
           />
           <ServiceCard
             title="مساج رياضي عميق (90 دقيقة)"
-            desc="ضغط أعمق واستشفاء بعد تمرين، سكوات، حديد. تفكيك عضلي حقيقي، مو دلع."
+            desc="تفكيك حقيقي بعد تمرين ثقيل. ضغط أعمق واستشفاء أقوى للرياضيين."
             price="380 ريال"
             img="https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=900&q=80"
             badge="رياضي"
           />
           <ServiceCard
-            title="جلسة منزلية خاصة داخل الرياض"
-            desc="جلسة شخصية في مساحتك أنت. هدوء كامل، بدون إزعاج، بدون انتظار صالون."
+            title="جلسة خاصة VIP داخل الرياض"
+            desc="جلسة شخصية في مساحتك إنت. هدوء كامل، بدون انتظار ولا ازعاج صالونات."
             price="سعر حسب الموقع"
             img="https://images.unsplash.com/photo-1609899537878-94f247475e70?auto=format&fit=crop&w=900&q=80"
             badge="VIP"
@@ -261,7 +261,7 @@ export default function HomePage() {
         gap: "20px",
         gridTemplateColumns: "1fr"
       }}>
-        {/* صورة أجواء سبا - فوط/شموع */}
+        {/* صورة أجواء سبا - مناشف + شموع + هدوء */}
         <div
           style={{
             width: "100%",
@@ -297,9 +297,8 @@ export default function HomePage() {
             lineHeight: 1.7,
             color: "#333"
           }}>
-            "عزوز مساج" خدمة مساج منزلية داخل مدينة الرياض مُصممة للناس اللي ما يبون صالون مزدحم،
-            ما يبون ينتظرون دور، وما يبون جو إزعاج.
-            أنت ترتاح في مكانك — وإحنا نجيك.
+            "عزوز مساج" مو صالون مزدحم. هذي خدمة منزلية VIP داخل مدينة الرياض للناس اللي
+            يبغون راحة فعلية بدون دوشة، بدون انتظار، بدون عيون كثيرة.
           </p>
 
           <p style={{
@@ -308,13 +307,13 @@ export default function HomePage() {
             lineHeight: 1.7,
             color: "#555"
           }}>
-            الجلسات محترمة 100%، بزيوت نظيفة، وتعقيم قبل وبعد.
-            لا خدمات مخالفة. هذا مساج رعاية عضلية واسترخاء فقط.
+            الجلسات مهنية 100%: استرخاء، استشفاء، عناية بعضلاتك.  
+            ما فيه أي شي مخالف. احترام للخصوصية خط أحمر.
           </p>
         </div>
       </section>
 
-      {/* SECTION 5: الخطوات بعد الحجز */}
+      {/* SECTION 5: HOW IT WORKS */}
       <section style={{
         backgroundColor: "#fff",
         borderRadius: "16px",
@@ -345,8 +344,8 @@ export default function HomePage() {
         }}>
           <li>تعبي نموذج الحجز وتحدد نوع الجلسة + الحي + الوقت اللي يناسبك.</li>
           <li>يوصلنا الطلب مباشرة.</li>
-          <li>نرجع لك للتأكيد (الوقت / المعالج / السعر النهائي حسب الموقع).</li>
-          <li>نوصل للموقع ونبدأ الجلسة في جو هادي ومريح.</li>
+          <li>نرجع لك للتأكيد (الوقت / المعالج / السعر النهائي حسب موقعك).</li>
+          <li>نوصل للموقع ونبدأ الجلسة في جو هادي ونظيف.</li>
         </ol>
 
         <div style={{
