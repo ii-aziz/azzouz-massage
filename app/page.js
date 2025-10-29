@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function BookingPage() {
   const [form, setForm] = useState({
@@ -18,7 +19,6 @@ export default function BookingPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // تحقق من رقم الجوال السعودي
     const phoneRegex = /^05\d{8}$/;
     if (!phoneRegex.test(form.phone)) {
       alert("الرجاء إدخال رقم جوال صحيح يبدأ بـ 05 ويتكون من 10 أرقام");
@@ -51,6 +51,28 @@ export default function BookingPage() {
         boxShadow: "0 8px 25px rgba(0,0,0,0.05)",
       }}
     >
+      {/* صورة الهيرو من صورك */}
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        }}
+      >
+        <img
+          src="/IMG_7888.jpeg"
+          alt="جلسة مساج بزيوت دافئة"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+      </div>
+
       <h1
         style={{
           textAlign: "center",
@@ -150,6 +172,7 @@ export default function BookingPage() {
           />
         </label>
 
+        {/* زر إرسال الطلب */}
         <button
           type="submit"
           style={{
@@ -165,6 +188,24 @@ export default function BookingPage() {
         >
           إرسال الحجز
         </button>
+
+        {/* زر العودة للصفحة الرئيسية */}
+        <Link
+          href="/"
+          style={{
+            textAlign: "center",
+            textDecoration: "none",
+            backgroundColor: "#fff",
+            border: "1px solid #000",
+            color: "#000",
+            padding: "10px",
+            borderRadius: "8px",
+            fontSize: "15px",
+            fontWeight: 600,
+          }}
+        >
+          ⬅️ الرجوع للصفحة الرئيسية
+        </Link>
       </form>
     </main>
   );
