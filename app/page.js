@@ -20,78 +20,47 @@ export default function HomePage() {
           lineHeight: 1.6
         }}
       >
-        🔥 عرض إطلاق الرياض: مساج منزلي داخل الرياض فقط – احجز الآن ويتم تأكيد السعر حسب الموقع والموديل المطلوب (رجال / نساء).
+        🔥 عرض إطلاق الرياض: مساج منزلي داخل الرياض فقط – احجز الآن ويتم
+        تأكيد السعر حسب موقعك ونوع الجلسة المطلوبة (رجال / نساء).
       </div>
 
-      {/* SECTION 1: HERO WITH IMAGE */}
-      <section style={{
-        backgroundColor: "#fff",
-        borderRadius: "16px",
-        padding: 0,
-        boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
-        border: "1px solid #eee",
-        overflow: "hidden",
-        display: "grid",
-        gridTemplateColumns: "1fr",
-      }}>
-
-        {/* صورة علوية (حقيقية <img /> مش background) */}
-        <div style={{ width: "100%", height: "220px", overflow: "hidden" }}>
+      {/* SECTION 1: HERO WITH LOCAL IMAGE */}
+      <section style={sectionShell}>
+        {/* الصورة الرئيسية */}
+        <div
+          style={{
+            width: "100%",
+            overflow: "hidden",
+            borderRadius: "12px 12px 0 0",
+            backgroundColor: "#000",
+            height: "220px"
+          }}
+        >
           <img
-            src="https://images.unsplash.com/photo-1584466977773-e625c37cdd40?auto=format&fit=crop&w=1600&q=80"
-            alt="جلسة مساج بزيوت دافئة"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block"
-            }}
+            src="/IMG_7888.jpeg"
+            alt="جلسة مساج منزلية - صورة توضح الستايل"
+            style={heroImageStyle}
           />
         </div>
 
         {/* النص والأزرار */}
         <div style={{ padding: "24px" }}>
           {/* البادجات */}
-          <div style={{
-            fontSize: "13px",
-            fontWeight: 500,
-            color: "#555",
-            marginBottom: "12px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}>
+          <div style={badgeRow}>
             <Badge dark>الرياض فقط</Badge>
             <Badge>خدمة منزلية</Badge>
             <Badge>رجال / نساء</Badge>
           </div>
 
-          {/* العنوان + الوصف */}
-          <h1 style={{
-            margin: "0 0 12px 0",
-            fontSize: "28px",
-            lineHeight: 1.3,
-            fontWeight: 700,
-            color: "#111"
-          }}>
-            عزوز مساج
-          </h1>
+          <h1 style={h1Style}>عزوز مساج</h1>
 
-          <p style={{
-            margin: "0 0 20px 0",
-            fontSize: "16px",
-            lineHeight: 1.6,
-            color: "#333",
-            fontWeight: 400
-          }}>
-            جلسات مساج منزلية احترافية داخل مدينة الرياض.
-            استرخاء بزيوت دافئة، مساج علاجي لآلام العضلات،
-            ومساج رياضي عميق للاستشفاء.
+          <p style={leadP}>
+            جلسات مساج منزلية احترافية داخل مدينة الرياض. استرخاء بزيوت
+            دافئة، مساج علاجي لآلام العضلات، ومساج رياضي عميق للاستشفاء.
             نوصل لين بيتك أو مكتبك مع خصوصية وتعقيم كامل.
           </p>
 
-          {/* الأزرار */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+          <div style={ctaRow}>
             <Link href="/book" style={primaryBtn}>
               احجز جلسة الآن
             </Link>
@@ -106,12 +75,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2: WHY US */}
+      {/* WHY US */}
       <section style={sectionCard}>
-        <SectionTitle
-          icon="💆‍♂️✨"
-          text="ليش تختار عزوز مساج؟"
-        />
+        <SectionTitle icon="💆‍♂️✨" text="ليش تختار عزوز مساج؟" />
 
         <div style={featureGrid}>
           <FeatureCard
@@ -137,40 +103,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 3: PACKAGES WITH IMAGES */}
+      {/* PACKAGES / الباقات */}
       <section style={sectionCard}>
-        <SectionTitle
-          icon="📋"
-          text="الباقات المتوفرة"
-        />
+        <SectionTitle icon="📋" text="الباقات المتوفرة" />
 
         <div style={servicesGrid}>
           <ServiceCard
             title="مساج استرخاء (60 دقيقة)"
             desc="راحة كاملة، نوم أعمق، تهدئة ضغطك اليومي بزيوت دافئة ولمسة ناعمة."
             price="250 ريال"
-            img="https://images.unsplash.com/photo-1600334129128-685c93f6022f?auto=format&fit=crop&w=900&q=80"
+            img="/IMG_7889.webp"
             badge="راحة"
           />
           <ServiceCard
             title="مساج علاجي للشد العضلي (60 دقيقة)"
-            desc="تركيز على عضلات متيبسة: رقبة، كتف، أسفل ظهر. مناسب لحمّلة المكتب."
+            desc="تركيز على عضلات متيبسة: رقبة، كتف، أسفل ظهر. مناسب للي يجلس كثير على الكمبيوتر."
             price="300 ريال"
-            img="https://images.unsplash.com/photo-1580281658629-47dab5c4c4e0?auto=format&fit=crop&w=900&q=80"
+            img="/IMG_7890.jpeg"
             badge="شد عضلي"
           />
           <ServiceCard
             title="مساج رياضي عميق (90 دقيقة)"
-            desc="تفكيك عضلي واستشفاء بعد تمرين ثقيل. ضغط أعمق وتركز على نقاط الشد."
+            desc="تفكيك عضلي واستشفاء بعد تمرين ثقيل أو مجهود عالي. ضغط أعمق وركّز على النقاط المتشنجة."
             price="380 ريال"
-            img="https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=900&q=80"
+            img="/IMG_7891.webp"
             badge="رياضي"
           />
           <ServiceCard
             title="جلسة خاصة VIP داخل الرياض"
-            desc="جلسة شخصية عندك إنت. راحة وهدوء بدون انتظار ولا إزعاج صالونات."
+            desc="جلسة شخصية عندك إنت. هدوء، راحة، بدون انتظار ولا إزعاج صالونات."
             price="سعر حسب الموقع"
-            img="https://images.unsplash.com/photo-1609899537878-94f247475e70?auto=format&fit=crop&w=900&q=80"
+            img="/IMG_7892.jpeg"
             badge="VIP"
           />
         </div>
@@ -182,29 +145,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 4: ABOUT / من نحن */}
-      <section style={{
-        ...sectionCard,
-        display: "grid",
-        gap: "20px",
-        gridTemplateColumns: "1fr"
-      }}>
-        {/* صورة سبا (مناشف ملفوفة + شموع) */}
-        <div style={{
-          width: "100%",
-          height: "180px",
-          borderRadius: "12px",
-          border: "1px solid #eee",
-          overflow: "hidden",
-          boxShadow: "0 8px 20px rgba(0,0,0,0.07)"
-        }}>
+      {/* ABOUT / عن الخدمة */}
+      <section
+        style={{
+          ...sectionCard,
+          display: "grid",
+          gap: "20px",
+          gridTemplateColumns: "1fr"
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "180px",
+            borderRadius: "12px",
+            border: "1px solid #eee",
+            overflow: "hidden",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.07)",
+            backgroundColor: "#000"
+          }}
+        >
           <img
-            src="https://images.unsplash.com/photo-1600028068383-e9832cbf5d1b?auto=format&fit=crop&w=900&q=80"
-            alt="أجواء استرخاء وسبا"
+            src="/IMG_7893.jpeg"
+            alt="أجواء سبا نظيفة وتعقيم"
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              objectPosition: "center",
               display: "block"
             }}
           />
@@ -221,60 +189,68 @@ export default function HomePage() {
 
           <p style={pSub}>
             الجلسات مهنية 100%: استرخاء، استشفاء، عناية بعضلاتك.
-            ما فيه أي شي مخالف. احترام حدود وخصوصية العميل خط أحمر.
+            ما فيه أي شي مخالف. احترام الحدود والخصوصية خط أحمر.
           </p>
         </div>
       </section>
 
-      {/* SECTION 5: HOW IT WORKS */}
+      {/* HOW IT WORKS */}
       <section style={sectionCard}>
-        <SectionTitle
-          icon="📲"
-          text="كيف يتم الحجز؟"
-        />
+        <SectionTitle icon="📲" text="كيف يتم الحجز؟" />
 
-        <ol style={{
-          margin: 0,
-          padding: "0 20px",
-          color: "#333",
-          lineHeight: 1.7,
-          fontSize: "15px"
-        }}>
-          <li>تعبي نموذج الحجز وتحدد نوع الجلسة + الحي + الوقت اللي يناسبك.</li>
+        <ol
+          style={{
+            margin: 0,
+            padding: "0 20px",
+            color: "#333",
+            lineHeight: 1.7,
+            fontSize: "15px"
+          }}
+        >
+          <li>
+            تعبي نموذج الحجز وتحدد نوع الجلسة + الحي + الوقت اللي يناسبك.
+          </li>
           <li>يوصلنا الطلب مباشرة.</li>
-          <li>نرجع لك للتأكيد (الوقت / التوفر / السعر حسب موقعك).</li>
+          <li>
+            نرجع لك للتأكيد (الوقت / التوفر / السعر النهائي حسب موقعك داخل
+            الرياض).
+          </li>
           <li>نوصل لموقعك ونبدأ الجلسة في جو هادي ونظيف.</li>
         </ol>
 
-        <div style={{
-          marginTop: "20px",
-          fontSize: "13px",
-          lineHeight: 1.6,
-          color: "#666"
-        }}>
-          للحجز السريع تواصل سناب 👇<br />
+        <div
+          style={{
+            marginTop: "20px",
+            fontSize: "13px",
+            lineHeight: 1.6,
+            color: "#666"
+          }}
+        >
+          للحجز السريع تواصل سناب 👇
+          <br />
           <b>azizan99</b>
         </div>
       </section>
-
     </main>
   );
 }
 
-/* Components */
+/* Small reusable components */
 
 function Badge({ children, dark }) {
   return (
-    <span style={{
-      backgroundColor: dark ? "#000" : "#f5f5f5",
-      color: dark ? "#fff" : "#333",
-      border: dark ? "1px solid #000" : "1px solid #ddd",
-      padding: "4px 8px",
-      borderRadius: "6px",
-      fontSize: "12px",
-      fontWeight: 600,
-      lineHeight: 1.3
-    }}>
+    <span
+      style={{
+        backgroundColor: dark ? "#000" : "#f5f5f5",
+        color: dark ? "#fff" : "#333",
+        border: dark ? "1px solid #000" : "1px solid #ddd",
+        padding: "4px 8px",
+        borderRadius: "6px",
+        fontSize: "12px",
+        fontWeight: 600,
+        lineHeight: 1.3
+      }}
+    >
       {children}
     </span>
   );
@@ -282,16 +258,18 @@ function Badge({ children, dark }) {
 
 function SectionTitle({ icon, text }) {
   return (
-    <h2 style={{
-      margin: "0 0 16px 0",
-      fontSize: "20px",
-      lineHeight: 1.4,
-      fontWeight: 700,
-      color: "#111",
-      display: "flex",
-      alignItems: "center",
-      gap: "8px"
-    }}>
+    <h2
+      style={{
+        margin: "0 0 16px 0",
+        fontSize: "20px",
+        lineHeight: 1.4,
+        fontWeight: 700,
+        color: "#111",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px"
+      }}
+    >
       <span>{text}</span>
       <span style={{ fontSize: "18px" }}>{icon}</span>
     </h2>
@@ -300,45 +278,53 @@ function SectionTitle({ icon, text }) {
 
 function FeatureCard({ icon, title, desc }) {
   return (
-    <div style={{
-      border: "1px solid #eee",
-      borderRadius: "12px",
-      padding: "16px",
-      backgroundColor: "#fff",
-      display: "grid",
-      gridTemplateColumns: "auto 1fr",
-      gap: "12px",
-      alignItems: "start",
-      boxShadow: "0 8px 20px rgba(0,0,0,0.04)"
-    }}>
-      <div style={{
-        width: "44px",
-        height: "44px",
-        borderRadius: "10px",
-        border: "1px solid #ddd",
-        backgroundColor: "#fafafa",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "20px",
-        fontWeight: 600
-      }}>
+    <div
+      style={{
+        border: "1px solid #eee",
+        borderRadius: "12px",
+        padding: "16px",
+        backgroundColor: "#fff",
+        display: "grid",
+        gridTemplateColumns: "auto 1fr",
+        gap: "12px",
+        alignItems: "start",
+        boxShadow: "0 8px 20px rgba(0,0,0,0.04)"
+      }}
+    >
+      <div
+        style={{
+          width: "44px",
+          height: "44px",
+          borderRadius: "10px",
+          border: "1px solid #ddd",
+          backgroundColor: "#fafafa",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "20px",
+          fontWeight: 600
+        }}
+      >
         {icon}
       </div>
       <div style={{ display: "grid", gap: "4px" }}>
-        <div style={{
-          fontSize: "15px",
-          fontWeight: 600,
-          color: "#111",
-          lineHeight: 1.4
-        }}>
+        <div
+          style={{
+            fontSize: "15px",
+            fontWeight: 600,
+            color: "#111",
+            lineHeight: 1.4
+          }}
+        >
           {title}
         </div>
-        <div style={{
-          fontSize: "14px",
-          color: "#444",
-          lineHeight: 1.5
-        }}>
+        <div
+          style={{
+            fontSize: "14px",
+            color: "#444",
+            lineHeight: 1.5
+          }}
+        >
           {desc}
         </div>
       </div>
@@ -348,23 +334,27 @@ function FeatureCard({ icon, title, desc }) {
 
 function ServiceCard({ title, desc, price, img, badge }) {
   return (
-    <div style={{
-      border: "1px solid #eee",
-      borderRadius: "12px",
-      backgroundColor: "#fff",
-      overflow: "hidden",
-      boxShadow: "0 8px 20px rgba(0,0,0,0.04)",
-      display: "grid",
-      gridTemplateRows: "160px auto"
-    }}>
-      {/* صورة الباقة (img بدل background) */}
-      <div style={{
-        width: "100%",
-        height: "160px",
-        position: "relative",
+    <div
+      style={{
+        border: "1px solid #eee",
+        borderRadius: "12px",
+        backgroundColor: "#fff",
         overflow: "hidden",
-        backgroundColor: "#000"
-      }}>
+        boxShadow: "0 8px 20px rgba(0,0,0,0.04)",
+        display: "grid",
+        gridTemplateRows: "160px auto"
+      }}
+    >
+      {/* صورة الباقة */}
+      <div
+        style={{
+          width: "100%",
+          height: "160px",
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#000"
+        }}
+      >
         <img
           src={img}
           alt={title}
@@ -377,46 +367,54 @@ function ServiceCard({ title, desc, price, img, badge }) {
             opacity: 0.92
           }}
         />
-        <div style={{
-          position: "absolute",
-          top: "12px",
-          right: "12px",
-          backgroundColor: "#000",
-          color: "#fff",
-          fontSize: "12px",
-          fontWeight: 600,
-          padding: "4px 8px",
-          borderRadius: "8px",
-          lineHeight: 1.3,
-          boxShadow: "0 8px 20px rgba(0,0,0,0.4)"
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "12px",
+            backgroundColor: "#000",
+            color: "#fff",
+            fontSize: "12px",
+            fontWeight: 600,
+            padding: "4px 8px",
+            borderRadius: "8px",
+            lineHeight: 1.3,
+            boxShadow: "0 8px 20px rgba(0,0,0,0.4)"
+          }}
+        >
           {badge}
         </div>
       </div>
 
       {/* تفاصيل الخدمة */}
       <div style={{ padding: "16px", display: "grid", gap: "6px" }}>
-        <div style={{
-          fontSize: "16px",
-          fontWeight: 600,
-          color: "#111",
-          lineHeight: 1.4
-        }}>
+        <div
+          style={{
+            fontSize: "16px",
+            fontWeight: 600,
+            color: "#111",
+            lineHeight: 1.4
+          }}
+        >
           {title}
         </div>
-        <div style={{
-          fontSize: "14px",
-          color: "#444",
-          lineHeight: 1.5
-        }}>
+        <div
+          style={{
+            fontSize: "14px",
+            color: "#444",
+            lineHeight: 1.5
+          }}
+        >
           {desc}
         </div>
-        <div style={{
-          fontSize: "15px",
-          fontWeight: 600,
-          color: "#000",
-          marginTop: "4px"
-        }}>
+        <div
+          style={{
+            fontSize: "15px",
+            fontWeight: 600,
+            color: "#000",
+            marginTop: "4px"
+          }}
+        >
           {price}
         </div>
       </div>
@@ -425,6 +423,57 @@ function ServiceCard({ title, desc, price, img, badge }) {
 }
 
 /* shared styles */
+const sectionShell = {
+  backgroundColor: "#fff",
+  borderRadius: "16px",
+  padding: 0,
+  boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
+  border: "1px solid #eee",
+  overflow: "hidden",
+  display: "grid",
+  gridTemplateColumns: "1fr"
+};
+
+const heroImageStyle = {
+  width: "100%",
+  height: "220px",
+  objectFit: "cover",
+  objectPosition: "center",
+  display: "block"
+};
+
+const badgeRow = {
+  fontSize: "13px",
+  fontWeight: 500,
+  color: "#555",
+  marginBottom: "12px",
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "8px"
+};
+
+const h1Style = {
+  margin: "0 0 12px 0",
+  fontSize: "28px",
+  lineHeight: 1.3,
+  fontWeight: 700,
+  color: "#111"
+};
+
+const leadP = {
+  margin: "0 0 20px 0",
+  fontSize: "16px",
+  lineHeight: 1.6,
+  color: "#333",
+  fontWeight: 400
+};
+
+const ctaRow = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "12px"
+};
+
 const sectionCard = {
   backgroundColor: "#fff",
   borderRadius: "16px",
