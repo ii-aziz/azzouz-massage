@@ -20,9 +20,7 @@ export default function HomePage() {
           lineHeight: 1.6
         }}
       >
-        🔥 عرض إطلاق الرياض:  
-        <span style={{ fontWeight: "700" }}>مساج منزلي داخل الرياض فقط</span>  
-        – احجز الآن ويتم تأكيد السعر حسب الموقع والموديل المطلوب (رجال / نساء).
+        🔥 عرض إطلاق الرياض: مساج منزلي داخل الرياض فقط – احجز الآن ويتم تأكيد السعر حسب الموقع والموديل المطلوب (رجال / نساء).
       </div>
 
       {/* SECTION 1: HERO WITH IMAGE */}
@@ -37,19 +35,21 @@ export default function HomePage() {
         gridTemplateColumns: "1fr",
       }}>
 
-        {/* صورة علوية */}
-        <div
-          style={{
-            width: "100%",
-            height: "220px",
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1584466977773-e625c37cdd40?auto=format&fit=crop&w=1600&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}
-        />
+        {/* صورة علوية (حقيقية <img /> مش background) */}
+        <div style={{ width: "100%", height: "220px", overflow: "hidden" }}>
+          <img
+            src="https://images.unsplash.com/photo-1584466977773-e625c37cdd40?auto=format&fit=crop&w=1600&q=80"
+            alt="جلسة مساج بزيوت دافئة"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block"
+            }}
+          />
+        </div>
 
-        {/* نص وأزرار */}
+        {/* النص والأزرار */}
         <div style={{ padding: "24px" }}>
           {/* البادجات */}
           <div style={{
@@ -84,9 +84,9 @@ export default function HomePage() {
             color: "#333",
             fontWeight: 400
           }}>
-            جلسات مساج منزلية احترافية داخل مدينة الرياض.  
+            جلسات مساج منزلية احترافية داخل مدينة الرياض.
             استرخاء بزيوت دافئة، مساج علاجي لآلام العضلات،
-            ومساج رياضي عميق للاستشفاء.  
+            ومساج رياضي عميق للاستشفاء.
             نوصل لين بيتك أو مكتبك مع خصوصية وتعقيم كامل.
           </p>
 
@@ -190,19 +190,25 @@ export default function HomePage() {
         gridTemplateColumns: "1fr"
       }}>
         {/* صورة سبا (مناشف ملفوفة + شموع) */}
-        <div
-          style={{
-            width: "100%",
-            height: "180px",
-            borderRadius: "12px",
-            border: "1px solid #eee",
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1600028068383-e9832cbf5d1b?auto=format&fit=crop&w=900&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            boxShadow: "0 8px 20px rgba(0,0,0,0.07)"
-          }}
-        />
+        <div style={{
+          width: "100%",
+          height: "180px",
+          borderRadius: "12px",
+          border: "1px solid #eee",
+          overflow: "hidden",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.07)"
+        }}>
+          <img
+            src="https://images.unsplash.com/photo-1600028068383-e9832cbf5d1b?auto=format&fit=crop&w=900&q=80"
+            alt="أجواء استرخاء وسبا"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block"
+            }}
+          />
+        </div>
 
         <div>
           <SectionTitle icon="🕯️" text="عن الخدمة" />
@@ -237,7 +243,7 @@ export default function HomePage() {
           <li>تعبي نموذج الحجز وتحدد نوع الجلسة + الحي + الوقت اللي يناسبك.</li>
           <li>يوصلنا الطلب مباشرة.</li>
           <li>نرجع لك للتأكيد (الوقت / التوفر / السعر حسب موقعك).</li>
-          <li>نوصل لموقعك ونبدأ الجلسة في جو هادي ونضيف.</li>
+          <li>نوصل لموقعك ونبدأ الجلسة في جو هادي ونظيف.</li>
         </ol>
 
         <div style={{
@@ -255,7 +261,7 @@ export default function HomePage() {
   );
 }
 
-/* Reusable bits */
+/* Components */
 
 function Badge({ children, dark }) {
   return (
@@ -351,17 +357,26 @@ function ServiceCard({ title, desc, price, img, badge }) {
       display: "grid",
       gridTemplateRows: "160px auto"
     }}>
-      {/* صورة الباقة */}
-      <div
-        style={{
-          width: "100%",
-          height: "160px",
-          backgroundImage: `url('${img}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative"
-        }}
-      >
+      {/* صورة الباقة (img بدل background) */}
+      <div style={{
+        width: "100%",
+        height: "160px",
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "#000"
+      }}>
+        <img
+          src={img}
+          alt={title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
+            opacity: 0.92
+          }}
+        />
         <div style={{
           position: "absolute",
           top: "12px",
@@ -372,7 +387,8 @@ function ServiceCard({ title, desc, price, img, badge }) {
           fontWeight: 600,
           padding: "4px 8px",
           borderRadius: "8px",
-          lineHeight: 1.3
+          lineHeight: 1.3,
+          boxShadow: "0 8px 20px rgba(0,0,0,0.4)"
         }}>
           {badge}
         </div>
