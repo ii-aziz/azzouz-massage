@@ -2,8 +2,17 @@ export async function POST(request) {
   const data = await request.json();
 
   console.log("حجز جديد:", data);
+  // شكل البيانات:
+  // {
+  //   service: "...",
+  //   gender: "...",
+  //   name: "...",
+  //   area: "...",
+  //   time: "...",
+  //   notes: "..."
+  // }
 
-  // TODO: هنا تقدر فيما بعد تبرمج إرسال بريد لك تلقائي
+  // 🔜 قريب بنركب إرسال إيميل لك هنا (SMTP)
 
   return new Response(
     JSON.stringify({ ok: true }),
