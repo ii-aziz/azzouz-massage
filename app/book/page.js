@@ -1,206 +1,222 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function BookPage() {
-  const [service, setService] = useState("مساج استرخاء (60 دقيقة)");
-  const [gender, setGender] = useState("رجال");
-  const [name, setName] = useState("");
-  const [area, setArea] = useState("");
-  const [time, setTime] = useState("");
-  const [notes, setNotes] = useState("");
-  const [status, setStatus] = useState("");
+export default function BookingPage() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    sessionType: "",
+    gender: "",
+    date: "",
+    notes: "",
+  });
 
-  async function submitBooking(e) {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("جاري الإرسال...");
 
-    try {
-      const res = await fetch("/api/book", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-site-token": process.env.NEXT_PUBLIC_SITE_TOKEN
-        },
-        body: JSON.stringify({
-          service,
-          gender,
-          name,
-          area,
-          time,
-          notes
-        })
-      });
-
-      if (res.ok) {
-        setStatus("تم استلام طلبك ✅ سيتم التواصل معك للتأكيد النهائي.");
-        setService("مساج استرخاء (60 دقيقة)");
-        setGender("رجال");
-        setName("");
-        setArea("");
-        setTime("");
-        setNotes("");
-      } else {
-        setStatus("صار خطأ، حاول مرة ثانية أو تواصل على السناب azizan99 👻");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("صار خطأ في الاتصال. جرّب بعد شوي 🙏");
+    const phoneRegex = /^05\d{8}$/;
+    if (!phoneRegex.test(form.phone)) {
+      alert("الرجاء إدخال رقم جوال صحيح يبدأ بـ 05 ويتكون من 10 أرقام");
+      return;
     }
-  }
+
+    console.log("Booking Data:", form);
+    alert("تم إرسال الحجز بنجاح ✅ سيتم التواصل معك لتأكيد الموعد.");
+
+    setForm({
+      name: "",
+      phone: "",
+      sessionType: "",
+      gender: "",
+      date: "",
+      notes: "",
+    });
+  };
 
   return (
-    <main style={{
-      maxWidth: "600px",
-      margin: "0 auto",
-      backgroundColor: "#fff",
-      borderRadius: "16px",
-      padding: "24px",
-      boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
-      border: "1px solid #eee"
-    }}>
-      <h1 style={{
-        marginTop: 0,
-        fontSize: "22px",
-        fontWeight: 700,
-        lineHeight: 1.4,
-        color: "#111"
-      }}>
-        حجز جلسة
-      </h1>
+    <main
+      style={{
+        maxWidth: "500px",
+        margin: "0 auto",
+        padding: "32px",
+        display: "grid",
+        gap: "16px",
+        backgroundColor: "#fff",
+        borderRadius: "16px",
+        boxShadow: "0 8px 25px rgba(0,0,0,0.05)",
+      }}
+    >
+      {/* صورة فوق */}
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+          backgroundColor: "#000",
+        }}
+      >
+        <img
+          src="/IMG_7888.jpeg"
+          alt="جلسة مساج بزيوت دافئة"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+      </div>
 
-      <p style={{ fontSize: "14px", color: "#444", lineHeight: 1.6, marginTop: 0 }}>
-        الخدمة متاحة داخل <b>مدينة الرياض فقط</b> (منزل / مكتب).<br />
-        بعد إرسال الطلب، بنرجع لك للتأكيد بخصوص الوقت والسعر النهائي.
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: "24px",
+          fontWeight: 700,
+          marginBottom: "8px",
+        }}
+      >
+        احجز جلستك الآن 💆‍♂️
+      </h1>
+      <p style={{ textAlign: "center", color: "#555" }}>
+        يرجى تعبئة البيانات التالية ليتم التواصل معك لتأكيد الموعد.
       </p>
 
-      <form onSubmit={submitBooking} style={{ display: "grid", gap: "16px", marginTop: "24px" }}>
-        
-        <div>
-          <label style={labelStyle}>نوع الجلسة</label>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "grid", gap: "14px", marginTop: "16px" }}
+      >
+        <label>
+          الاسم الكامل:
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            placeholder="اكتب اسمك هنا"
+            style={inputStyle}
+          />
+        </label>
+
+        <label>
+          رقم الجوال:
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            placeholder="05xxxxxxxx"
+            style={inputStyle}
+          />
+        </label>
+
+        <label>
+          نوع الجلسة:
           <select
+            name="sessionType"
+            value={form.sessionType}
+            onChange={handleChange}
+            required
             style={inputStyle}
-            value={service}
-            onChange={(e) => setService(e.target.value)}
           >
-            <option>مساج استرخاء (60 دقيقة)</option>
-            <option>مساج علاجي للشد العضلي (60 دقيقة)</option>
-            <option>مساج رياضي عميق (90 دقيقة)</option>
+            <option value="">اختر نوع الجلسة</option>
+            <option value="استرخاء">مساج استرخاء</option>
+            <option value="شد عضلي">مساج علاجي للشد العضلي</option>
+            <option value="رياضي">مساج رياضي عميق</option>
+            <option value="VIP">جلسة خاصة VIP</option>
           </select>
-        </div>
+        </label>
 
-        <div>
-          <label style={labelStyle}>الجنس</label>
+        <label>
+          الجنس:
           <select
+            name="gender"
+            value={form.gender}
+            onChange={handleChange}
+            required
             style={inputStyle}
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
           >
-            <option>رجال</option>
-            <option>نساء</option>
+            <option value="">اختر</option>
+            <option value="رجال">رجال</option>
+            <option value="نساء">نساء</option>
           </select>
-        </div>
+        </label>
 
-        <div>
-          <label style={labelStyle}>اسمك</label>
+        <label>
+          التاريخ والوقت:
           <input
-            style={inputStyle}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="مثال: أبو محمد / أم خالد"
+            type="datetime-local"
+            name="date"
+            value={form.date}
+            onChange={handleChange}
             required
-          />
-        </div>
-
-        <div>
-          <label style={labelStyle}>الحي / الموقع داخل الرياض</label>
-          <input
             style={inputStyle}
-            value={area}
-            onChange={(e) => setArea(e.target.value)}
-            placeholder="الياسمين، النرجس، العقيق..."
-            required
           />
-        </div>
+        </label>
 
-        <div>
-          <label style={labelStyle}>الوقت اللي يناسبك</label>
-          <input
-            style={inputStyle}
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            placeholder="اليوم بعد العشاء / بكرة العصر / السبت الظهر"
-            required
-          />
-        </div>
-
-        <div>
-          <label style={labelStyle}>ملاحظات (اختياري)</label>
+        <label>
+          ملاحظات إضافية:
           <textarea
-            style={{ ...inputStyle, minHeight: "80px", resize: "vertical" }}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="شد في الرقبة، ألم أسفل الظهر، أبغى جلسة هادئة..."
+            name="notes"
+            value={form.notes}
+            onChange={handleChange}
+            placeholder="أي تفاصيل إضافية..."
+            style={{ ...inputStyle, height: "80px" }}
           />
-        </div>
+        </label>
 
-        <button type="submit" style={{
-          backgroundColor: "#000",
-          color: "#fff",
-          padding: "14px 16px",
-          borderRadius: "10px",
-          fontSize: "15px",
-          fontWeight: 600,
-          border: "none",
-          cursor: "pointer"
-        }}>
-          إرسال الطلب
+        {/* زر إرسال الطلب */}
+        <button
+          type="submit"
+          style={{
+            backgroundColor: "#000",
+            color: "#fff",
+            padding: "12px",
+            borderRadius: "8px",
+            border: "none",
+            fontSize: "16px",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          إرسال الحجز
         </button>
+
+        {/* زر العودة للصفحة الرئيسية */}
+        <Link
+          href="/"
+          style={{
+            textAlign: "center",
+            textDecoration: "none",
+            backgroundColor: "#fff",
+            border: "1px solid #000",
+            color: "#000",
+            padding: "10px",
+            borderRadius: "8px",
+            fontSize: "15px",
+            fontWeight: 600,
+          }}
+        >
+          ⬅️ الرجوع للصفحة الرئيسية
+        </Link>
       </form>
-
-      {status && (
-        <div style={{
-          marginTop: "16px",
-          fontSize: "14px",
-          fontWeight: 500,
-          lineHeight: 1.5,
-          color: "#111",
-          backgroundColor: "#f6f6f6",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          padding: "12px"
-        }}>
-          {status}
-        </div>
-      )}
-
-      <div style={{
-        marginTop: "24px",
-        fontSize: "13px",
-        lineHeight: 1.6,
-        color: "#666"
-      }}>
-        للحجز السريع تواصل سناب 👇<br />
-        <b>azizan99</b>
-      </div>
     </main>
   );
 }
 
-const labelStyle = {
-  display: "block",
-  fontSize: "14px",
-  fontWeight: 600,
-  color: "#111",
-  marginBottom: "6px"
-};
-
 const inputStyle = {
   width: "100%",
-  borderRadius: "10px",
+  padding: "10px",
+  borderRadius: "8px",
   border: "1px solid #ccc",
-  padding: "12px 14px",
+  marginTop: "4px",
   fontSize: "15px",
-  lineHeight: 1.4,
-  outline: "none",
-  backgroundColor: "#fff"
 };
